@@ -85,6 +85,7 @@ MIGRATION_INCLUDED: <yes|no|n/a>
 API_CONTRACTS (if new endpoints added):
 - <METHOD> <path>: <request shape> → <response shape>
 - ...
+(Match the format in the ticket's API_CONTRACTS_PRODUCED field. The CTO will extract these into the project's API_CONTRACTS_REGISTRY on PR approval — the Frontend agent reads from there. If your endpoint differs from the ticket's planned contract, flag it in NOTES_FOR_CTO_REVIEW.)
 
 TESTS_WRITTEN: <yes|no> — <brief description>
 

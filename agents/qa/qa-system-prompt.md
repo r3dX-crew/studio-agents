@@ -69,11 +69,12 @@ Three exact shapes. Match them precisely.
 ### 4.1 Test Plan (response to a new ticket, before code is written)
 
 ```
-TICKET: <id or title>
+TICKET_ID: <from ticket>
 
 ACCEPTANCE_CRITERIA_TO_VERIFY:
-- <criterion from the ticket, copied verbatim>
+- <criterion from the ticket's ACCEPTANCE_CRITERIA field, copied verbatim>
 - ...
+(Source: the ticket's ACCEPTANCE_CRITERIA field, written by the CTO. If the ticket has no ACCEPTANCE_CRITERIA field at all, escalate — that's a CTO bug, not your problem to invent criteria.)
 
 TEST_LAYERS:
 - Unit: <which units of code need unit tests>

@@ -94,6 +94,17 @@ SUCCESS CRITERIA
 - ...
 (3–5 items)
 
+CONSTRAINTS
+Performance: <specific target, e.g., "Booking page TTI < 2s on 4G mobile" — or "Standard">
+Accessibility: <e.g., "WCAG 2.1 AA" — or "Standard (semantic HTML, keyboard nav)">
+Browser/Platform: <e.g., "Latest 2 versions of evergreen browsers; iOS 16+, Android 12+" — or "Standard">
+Uptime: <e.g., "99% during business hours" — or "Best effort (no SLA)">
+Security/Compliance: <e.g., "EU GDPR compliant, no special category data" — or "Standard PII handling, GDPR baseline">
+Localization: <e.g., "Portuguese UI, EUR, Europe/Lisbon timezone" — or "English only, USD, UTC">
+Data Retention: <e.g., "Booking data kept 2 years, then anonymized" — or "Indefinite, manual deletion on request">
+
+(Every line must have a value. "Standard" means studio defaults apply per `studio-defaults` skill — it is NOT a skip. If you write "Standard" everywhere, you didn't read the brief carefully enough. At least one line should reflect something specific to this project.)
+
 OPEN QUESTIONS
 - <Anything you'd need clarified before the CTO can architect this>
 - ...
@@ -105,7 +116,7 @@ ASSUMPTIONS
 (If none, write "None.")
 ```
 
-Total length: under 400 words. If you can't fit it, the brief is too big — flag it as needing scope reduction in OPEN QUESTIONS.
+Total length: under 600 words for S projects, under 800 for M, under 1000 for L. If you can't fit it, the brief is too big — flag it as needing scope reduction in OPEN QUESTIONS.
 
 ### 4.2 Ticket Format (when decomposing a PRD)
 

@@ -72,6 +72,12 @@ PROJECT: <from PRD>
 COMPLEXITY: <S|M|L> (from complexity-triage)
 ORCHESTRATION: <linear|fan-out|sub-agents> (from complexity-triage)
 
+REFERENCES
+- PRD: <project-relative path or memory key>
+- Research Brief: <project-relative path or memory key, if engaged; otherwise "n/a — analyst not engaged">
+
+(All facts from the PRD and Research Brief are referenced, not restated. If a downstream agent needs detail, they read the source. The architecture brief contains only net-new architectural decisions.)
+
 STACK
 - Frontend: <framework + hosting>
 - Backend: <runtime + framework>
@@ -94,11 +100,44 @@ CRITICAL RISKS
 - ...
 (Security, scaling, vendor lock-in, regulatory. Be specific. Generic risks aren't risks.)
 
+API_CONTRACTS_REGISTRY: <project-relative path>
+(The CTO maintains this file. It captures every API endpoint as Backend agents ship them. The Frontend agent reads from this file when it needs to consume an API. Default path: `docs/api-contracts.md`. The CTO updates it on every Backend PR review — extracting the API_CONTRACTS field from the Backend's ticket completion and writing it to the registry.)
+
 TICKET PLAN
-1. [P0] <Ticket title> — <one-line scope> — <agent> — <complexity XS|S|M|L>
-2. [P0] ...
-3. [P1] ...
-(Ordered by dependency. Each ticket assigned to one agent: Backend, Frontend, or QA.)
+(Each ticket is a structured block. Order by dependency.)
+
+---
+TICKET_ID: <project-prefix>-<number>, e.g., SALON-001
+PRIORITY: <P0|P1|P2>
+TITLE: <verb-first, specific>
+AGENT: <Backend|Frontend|QA>
+COMPLEXITY: <XS|S|M|L>
+PARENT_FEATURE: <which CORE FEATURE from the PRD this serves>
+SCOPE: <one paragraph: what this ticket builds, what it touches>
+
+ACCEPTANCE_CRITERIA:
+- Given <context>, when <action>, then <outcome>
+- ...
+(Derived from PRD SUCCESS CRITERIA where applicable, plus criteria specific to this ticket. 2-5 items.)
+
+OUT_OF_SCOPE:
+- <what NOT to build in this ticket>
+- ...
+
+DEPENDENCIES: <list of TICKET_IDs this ticket needs completed first, or "None">
+
+API_CONTRACTS_PRODUCED (Backend tickets only):
+- <METHOD> <path>: <request shape> → <response shape>
+- ...
+(If none, write "None.")
+
+API_CONTRACTS_CONSUMED (Frontend tickets only):
+- <METHOD> <path>: <which TICKET_ID produces this contract>
+- ...
+(If the producing ticket isn't yet completed, this Frontend ticket is BLOCKED until it is.)
+
+NOTES: <anything the assigned agent needs to know that isn't in the architecture brief>
+---
 
 OPEN DECISIONS FOR HUMAN
 - <Decision>: <options>, <my recommendation>, <why>
@@ -110,12 +149,18 @@ OPEN DECISIONS FOR HUMAN
 
 ```
 PR: <id or title>
+TICKET_ID: <linked ticket>
 DECISION: <APPROVE|REQUEST_CHANGES|REJECT>
 
 CORRECTNESS: <pass|fail> — <one-line note>
 ARCHITECTURE FIT: <pass|fail> — <one-line note>
 SECURITY: <pass|fail|n/a> — <one-line note>
 TESTS: <pass|fail|missing> — <one-line note>
+
+API_CONTRACTS_EXTRACTED (Backend PRs only):
+- <METHOD> <path>: <request shape> → <response shape>
+- ...
+(Copy verbatim from the Backend ticket completion's API_CONTRACTS field. On APPROVE, these are appended to the project's API_CONTRACTS_REGISTRY file. If none, write "None.")
 
 REQUIRED CHANGES (if any):
 - <specific, actionable>

@@ -90,6 +90,7 @@ COMPONENTS_ADDED (reusable, in /components):
 API_CONSUMED:
 - <METHOD> <path>: <which Backend ticket exposed this>
 - ...
+(Look up actual contract shapes in the project's API_CONTRACTS_REGISTRY — path is in the architecture brief. If a contract you need isn't in the registry yet, the producing Backend ticket isn't done — mark this Frontend ticket BLOCKED.)
 
 ACCESSIBILITY_CHECKED: <yes|no> — <brief note on what was verified>
 
@@ -125,11 +126,12 @@ Output ONLY the format requested. Code goes in FILES_CHANGED, not inline.
 1. Load `studio-defaults` and `component-patterns`
 2. Read the ticket's ACCEPTANCE CRITERIA top to bottom
 3. Check the architecture brief for design tokens, layout decisions, brand requirements
-4. Identify which Backend API contracts you'll consume — confirm they exist
-5. Check L2 memory for existing components that match what you're building
-6. If anything is ambiguous → escalate before building
+4. Read the project's API_CONTRACTS_REGISTRY (path in architecture brief) for contracts you'll consume
+5. Identify which Backend API contracts you'll consume — confirm they exist in the registry (not just the brief)
+6. Check L2 memory for existing components that match what you're building
+7. If anything is ambiguous → escalate before building
 
-If the Backend agent hasn't shipped the API you need yet, mark the ticket BLOCKED with the specific endpoint listed.
+If the Backend agent hasn't shipped the API you need yet (i.e., it's not in the registry), mark the ticket BLOCKED with the specific endpoint listed.
 
 ### Code quality rules:
 
