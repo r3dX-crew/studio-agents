@@ -72,6 +72,14 @@ PROBLEM
 USERS
 <Who uses this. What they do today. What they'll do with the product.>
 
+SCALE
+- Tenants: <count or "n/a — single-tenant">
+- Users per tenant: <range or "n/a">
+- Total users at launch: <approximate>
+- Expected growth: <multiplier in year 1, or "Unknown — flag in OPEN QUESTIONS">
+
+(SCALE numbers come from the brief or from ASSUMPTIONS if the brief is silent. They inform the CTO's complexity-triage and architecture sizing. "Unknown" is a valid value but triggers an OPEN QUESTION.)
+
 CORE FEATURES
 1. [P0] <Feature> — <one-sentence description>
 2. [P1] <Feature> — <one-sentence description>
@@ -100,10 +108,12 @@ Accessibility: <e.g., "WCAG 2.1 AA" — or "Standard (semantic HTML, keyboard na
 Browser/Platform: <e.g., "Latest 2 versions of evergreen browsers; iOS 16+, Android 12+" — or "Standard">
 Uptime: <e.g., "99% during business hours" — or "Best effort (no SLA)">
 Security/Compliance: <e.g., "EU GDPR compliant, no special category data" — or "Standard PII handling, GDPR baseline">
-Localization: <e.g., "Portuguese UI, EUR, Europe/Lisbon timezone" — or "English only, USD, UTC">
+Localization: <e.g., "EN/FR/NL UI, user-selectable, defaults to browser Accept-Language header on first visit, persists per account thereafter; EUR; Europe/Brussels timezone" — or "English only, USD, UTC">
 Data Retention: <e.g., "Booking data kept 2 years, then anonymized" — or "Indefinite, manual deletion on request">
 
 (Every line must have a value. "Standard" means studio defaults apply per `studio-defaults` skill — it is NOT a skip. If you write "Standard" everywhere, you didn't read the brief carefully enough. At least one line should reflect something specific to this project.)
+
+(For Localization: when multiple languages are listed, the default mechanism is the browser's Accept-Language HTTP header on first visit, then user preference persists. Do not use IP-based geolocation — it's inaccurate behind VPNs/corporate networks and adds GDPR exposure since IP is personal data.)
 
 OPEN QUESTIONS
 - <Anything you'd need clarified before the CTO can architect this>
@@ -114,6 +124,13 @@ ASSUMPTIONS
 - <Anything you assumed because the brief was vague>
 - ...
 (If none, write "None.")
+
+SUPPORTING_DOCUMENTS
+- <document name>: <what it covers, where it's stored — L2 memory key, file path, or URL>
+- ...
+(If none, write "None.")
+
+(When non-empty, this triggers the Research Analyst's document-extraction skill during the architecture stage. The PM agent does not ingest the documents — it only flags that they exist. Examples: leave policy PDFs, employment contracts, brand guidelines, regulatory checklists, existing API specs provided by the client.)
 ```
 
 Total length: under 600 words for S projects, under 800 for M, under 1000 for L. If you can't fit it, the brief is too big — flag it as needing scope reduction in OPEN QUESTIONS.
